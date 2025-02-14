@@ -1,9 +1,222 @@
-body {
-    background-color: powderblue;
-  }
-  h1 {
-    color: blue;
-  }
-  p {
-    color: red;
-  }
+    /********************************************
+      1) GLOBAL & BODY STYLES
+    *********************************************/
+    * {
+      box-sizing: border-box;
+    }
+
+    /* 
+       Use WhiteSmoke for the page background,
+       so the .applet-container (Snow) stands out.
+    */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: White; 
+    }
+
+    /********************************************
+      2) APPLET CONTAINER (16:9 Aspect Ratio)
+    *********************************************/
+    .applet-container {
+      aspect-ratio: 16 / 9;    
+      max-width: 100%;         
+      display: flex;           
+      flex-direction: column;  
+      margin: 0 auto;          
+    }
+
+    /********************************************
+      3) TITLE BAR
+    *********************************************/
+    .titleBar {
+      text-align: center;
+      background-color: FloralWhite;
+      padding: 10px;
+      border-bottom: 1px solid Silver; 
+    }
+
+    .titleBar h1 {
+      font-size: 2rem;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /********************************************
+      4) ASSETS REGION
+      (Interaction Space + Context Box)
+    *********************************************/
+    .assets {
+      flex: 1;           
+      display: flex;     
+      flex-direction: row;
+      align-items: stretch;
+      overflow: hidden;  
+    }
+
+    /********************************************
+      5) INTERACTION SPACE (2/3)
+    *********************************************/
+    .interactionSpace {
+      flex: 2; 
+      display: flex;
+      flex-direction: column; 
+      padding: 10px;
+      background-color: transparent; 
+    }
+
+    /* Upper & Lower Controls share styling */
+    .upperControls,
+    .lowerControls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      min-height: 60px;
+      gap: 10px;
+      color: #333;        
+      font-size: 1rem;    
+      font-weight: 500;   
+    }
+
+    /********************************************
+      6) WORKING AREA (Responsive)
+    *********************************************/
+    .workingArea {
+      flex: 1; 
+      border: 3px solid LightCoral;   /* from your palette */
+      border-radius: 8px;
+      background-color: Snow;         /* replaced SeaShell with Snow */
+      margin: 10px 0; 
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      /* 
+         Ensuring new elements inside are responsive:
+         - If you add images, use max-width: 100% and height: auto.
+         - If you add SVG, make sure to use width="100%" and height="100%" with a proper viewBox.
+      */
+    }
+    /* Example of a child element rule to keep images responsive:
+       .workingArea img {
+         max-width: 100%;
+         height: auto;
+       }
+    */
+
+    /********************************************
+      7) CONTEXT BOX (1/3)
+    *********************************************/
+    .contextBox {
+      flex: 1;
+      background-color: WhiteSmoke;
+      border: 1px dotted Silver;
+      border-radius: 10px;
+      padding: 20px;
+      font-size: 1.5rem; 
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start; 
+    }
+
+    /********************************************
+      8) BUTTONS & SLIDERS
+    *********************************************/
+    /* 
+       Primary Button: LightCoral background.
+       Hover state: Tomato (both allowed).
+    */
+    .primaryBtn {
+      font-size: 1.25rem;
+      padding: 10px 20px;
+      background-color: LightCoral;
+      border: none;
+      border-radius: 5px;
+      color: Snow;   /* White text on LightCoral */
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .primaryBtn:hover {
+      background-color: Tomato; /* Slightly darker */
+    }
+
+    /* 
+       Reset Button: specifically SteelBlue 
+    */
+    #resetBtn {
+      background-color: SteelBlue;
+      margin-left: 10px;
+    }
+
+    /* Slider (Range Input) 
+       We'll style the track and thumb in LightCoral.
+       Note that full cross-browser styling requires multiple vendor prefixes.
+    */
+    .slider {
+      width: 150px;
+      /* Base style for the range input (for some browsers) */
+      background-color: transparent; /* let track styling show through */
+    }
+
+    /* WebKit-based browsers (Chrome, Safari, Opera) */
+    .slider::-webkit-slider-runnable-track {
+      height: 6px; 
+      background: LightCoral;
+      border-radius: 3px;
+    }
+    .slider::-webkit-slider-thumb {
+      width: 16px; 
+      height: 16px; 
+      background: SteelBlue;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-top: -5px; /* center the thumb on the track */
+    }
+
+    /* Mozilla Firefox */
+    .slider::-moz-range-track {
+      height: 6px;
+      background: LightCoral;
+      border-radius: 3px;
+    }
+    .slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      background: SteelBlue;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* Internet Explorer/Edge (older versions) */
+    .slider::-ms-track {
+      height: 6px;
+      background: LightCoral;
+      border-radius: 3px;
+      border-color: transparent;
+      color: transparent;
+    }
+    .slider::-ms-thumb {
+      width: 16px;
+      height: 16px;
+      background: LightCoral;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-top: 0px; /* adjust as needed */
+    }
+
+    /********************************************
+      9) OPTIONAL SVG OVERLAY
+    *********************************************/
+    #svgOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;     
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
